@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alina Hamid — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose: #D4537E;
+    --rose-light: #FBEAF0;
+    --rose-dark: #4B1528;
+    --rose-mid: #993556;
+    --cream: #FAF8F5;
+    --dark: #1A1410;
+    --text: #3A3028;
+    --muted: #8A7A70;
+    --border: rgba(212,83,126,0.15);
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250,248,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--rose); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 6rem 4rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: -10%;
+    top: -10%;
+    width: 55%;
+    height: 120%;
+    background: radial-gradient(ellipse at center, #F4C0D1 0%, transparent 70%);
+    opacity: 0.35;
+    z-index: 0;
+  }
+  .hero-text { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block;
+    background: var(--rose-light);
+    color: var(--rose-mid);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em { color: var(--rose); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--rose);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary:hover { background: var(--rose-mid); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    border: 1.5px solid var(--rose);
+    color: var(--rose);
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    letter-spacing: 0.03em;
+  }
+  .btn-outline:hover { background: var(--rose-light); transform: translateY(-2px); }
+  .hero-visual { position: relative; z-index: 1; }
+  .avatar-frame {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 4/5;
+    border-radius: 40% 60% 55% 45% / 55% 45% 55% 45%;
+    background: linear-gradient(135deg, #F4C0D1 0%, #ED93B1 50%, #D4537E 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 7rem;
+    color: white;
+    margin: 0 auto;
+    position: relative;
+    animation: morphBlob 8s ease-in-out infinite alternate;
+    box-shadow: 0 30px 80px rgba(212,83,126,0.25);
+  }
+  @keyframes morphBlob {
+    0% { border-radius: 40% 60% 55% 45% / 55% 45% 55% 45%; }
+    50% { border-radius: 55% 45% 40% 60% / 45% 55% 60% 40%; }
+    100% { border-radius: 60% 40% 45% 55% / 40% 60% 50% 50%; }
+  }
+  .avatar-initial { font-size: 5rem; user-select: none; }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--dark);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--rose-light);
+    display: block;
+  }
+  .stat-label { font-size: 0.8rem; color: #8A7A70; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+
+  /* SECTIONS COMMON */
+  section { padding: 5rem 4rem; }
+  .section-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--dark);
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  /* ABOUT */
+  .about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--muted); font-size: 1rem; line-height: 1.9; margin-bottom: 1.2rem; }
+  .skills-list { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+  .skill-tag {
+    background: var(--rose-light);
+    color: var(--rose-mid);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    border: 1px solid rgba(212,83,126,0.2);
+  }
+  .certs { margin-top: 2rem; }
+  .certs h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 1rem; }
+  .cert-item {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem; color: var(--text);
+  }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--rose); flex-shrink: 0; }
+
+  /* EXPERIENCE */
+  .experience { background: var(--cream); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--rose);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 3px rgba(212,83,126,0.2);
+  }
+  .timeline-period {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 0.4rem;
+  }
+  .timeline-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-company { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .timeline-desc { font-size: 0.92rem; color: var(--text); line-height: 1.8; }
+  .timeline-desc li { margin-left: 1.2rem; margin-bottom: 0.3rem; }
+
+  /* PROJECTS */
+  .projects { background: var(--dark); }
+  .projects .section-title { color: var(--cream); }
+  .projects .section-eyebrow { color: #ED93B1; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rose), #ED93B1);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .project-card:hover { border-color: rgba(212,83,126,0.3); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-type {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #ED93B1; margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--cream);
+    margin-bottom: 0.75rem; line-height: 1.3;
+  }
+  .project-desc { font-size: 0.88rem; color: rgba(250,248,245,0.6); line-height: 1.8; margin-bottom: 1.5rem; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .project-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    background: rgba(212,83,126,0.15);
+    color: #F4C0D1;
+    border: 1px solid rgba(212,83,126,0.25);
+  }
+  .project-emoji { font-size: 2rem; margin-bottom: 1rem; }
+  .project-preview {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: #0d0d1a;
+  }
+  .project-preview svg { display: block; }
+
+  /* CONTACT */
+  .contact { background: var(--white); text-align: center; }
+  .contact .section-title { margin-bottom: 1rem; }
+  .contact-sub { color: var(--muted); font-size: 1rem; max-width: 480px; margin: 0 auto 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.5rem;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.9rem;
+    transition: all 0.25s;
+    background: var(--cream);
+  }
+  .contact-link:hover { border-color: var(--rose); color: var(--rose); transform: translateY(-2px); }
+  .contact-icon { font-size: 1.1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 1.5rem 4rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #5a4a40;
+  }
+  footer span { color: var(--rose); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 2rem; text-align: center; }
+    .hero-visual { order: -1; }
+    .avatar-frame { max-width: 260px; }
+    .hero-desc { margin: 0 auto 2rem; }
+    .hero-btns { justify-content: center; }
+    .stats-strip { gap: 2rem; padding: 2rem 1.5rem; flex-wrap: wrap; }
+    section { padding: 3rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Alina Hamid</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tag fade-up">Available for opportunities</div>
+    <h1 class="fade-up delay-1">
+      Creative <em>digital</em><br>storyteller &amp;<br>social strategist
+    </h1>
+    <p class="hero-desc fade-up delay-2">
+      Social Media Manager with 4–5 years of experience turning brands into communities. 
+      Also fluent in graphic design, UI/UX exploration, and data-driven thinking.
+    </p>
+    <div class="hero-btns fade-up delay-3">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-visual fade-up delay-4">
+    <div class="avatar-frame">
+      <span class="avatar-initial">A</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-num">4–5</span>
+    <span class="stat-label">Years in Social Media</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">10+</span>
+    <span class="stat-label">Brands Managed</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">7</span>
+    <span class="stat-label">Certifications</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">3</span>
+    <span class="stat-label">Languages</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-eyebrow">About Me</p>
+      <h2 class="section-title">Strategy meets creativity</h2>
+      <div class="about-text">
+        <p>I'm Alina — a Social Media Manager and content creator based in Islamabad, Pakistan. Over the past 4–5 years, I've helped brands build real digital presence through thoughtful content, community engagement, and consistent storytelling.</p>
+        <p>My background spans managing pages like DigitalLink and Umeed Homeo, leading community tech initiatives for women, and designing visuals that convert. I also hold a BS in Computer Science from Sarhad University, which gives me a technical edge most creatives don't have.</p>
+        <p>I'm currently expanding into UI/UX design and data analytics — because great digital work lives at the intersection of design thinking and real numbers.</p>
+        <div class="skills-list">
+          <span class="skill-tag">Social Media Strategy</span>
+          <span class="skill-tag">Content Creation</span>
+          <span class="skill-tag">Canva &amp; Photoshop</span>
+          <span class="skill-tag">Photography</span>
+          <span class="skill-tag">Reels &amp; Videography</span>
+          <span class="skill-tag">Graphic Design</span>
+          <span class="skill-tag">Figma (Beginner)</span>
+          <span class="skill-tag">Data Analysis (Beginner)</span>
+          <span class="skill-tag">HTML · CSS · PHP</span>
+          <span class="skill-tag">Community Building</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="certs">
+        <h3>Certifications</h3>
+        <div class="cert-item"><span class="cert-dot"></span>Social Media Management — Khudmukhtaar</div>
+        <div class="cert-item"><span class="cert-dot"></span>UI/UX Design — Great Learning</div>
+        <div class="cert-item"><span class="cert-dot"></span>Graphic Designing — INSIDER</div>
+        <div class="cert-item"><span class="cert-dot"></span>Digital Skills — NS Training</div>
+        <div class="cert-item"><span class="cert-dot"></span>Freelancing — NS Training</div>
+        <div class="cert-item"><span class="cert-dot"></span>Social Media Marketing — NS Training</div>
+        <div class="cert-item"><span class="cert-dot"></span>Data Analytics Cohort — Atomcamp</div>
+      </div>
+      <div style="margin-top: 2.5rem;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 1rem;">Education</h3>
+        <div class="cert-item"><span class="cert-dot"></span>BS Computer Science — Sarhad University (2020–2024), A Grade</div>
+        <div class="cert-item"><span class="cert-dot"></span>Web Development — SMIT Program (2023–2024)</div>
+        <div class="cert-item"><span class="cert-dot"></span>Languages: English · Urdu · Pashtu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <p class="section-eyebrow">Work History</p>
+  <h2 class="section-title">Where I've made impact</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-period">Nov 2024 — Apr 2025</div>
+      <div class="timeline-role">Social Media Manager</div>
+      <div class="timeline-company">Umeed Homeo · Islamabad, Pakistan</div>
+      <ul class="timeline-desc">
+        <li>Owned the full content calendar — planned, created, and scheduled posts across platforms</li>
+        <li>Produced reels, static posts, and captions tailored to the brand's health-focused audience</li>
+        <li>Improved page consistency and measurably increased engagement over 6 months</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Oct 2023 — Jun 2024</div>
+      <div class="timeline-role">Women-Tech Lead</div>
+      <div class="timeline-company">GDSC SUIT Peshawar</div>
+      <ul class="timeline-desc">
+        <li>Led community initiatives and workshops aimed at encouraging women to enter tech</li>
+        <li>Organised events, managed communications, and grew member participation</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Oct 2023 — Nov 2023</div>
+      <div class="timeline-role">Frontend Developer Intern</div>
+      <div class="timeline-company">Interns Pakistan</div>
+      <ul class="timeline-desc">
+        <li>Built responsive web pages using HTML, CSS, and JavaScript fundamentals</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">Jan 2024 — Feb 2024</div>
+      <div class="timeline-role">Web Development Intern</div>
+      <div class="timeline-company">Oasis Infobyte</div>
+      <ul class="timeline-desc">
+        <li>Practised frontend development skills on real project briefs</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item" style="padding-bottom: 0;">
+      <div class="timeline-period">Mar 2022 — Apr 2022</div>
+      <div class="timeline-role">Graphic Designer</div>
+      <div class="timeline-company">INSIDER</div>
+      <ul class="timeline-desc">
+        <li>Designed social media creatives, brand visuals, and promotional materials</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <p class="section-eyebrow">Portfolio</p>
+  <h2 class="section-title">Selected projects</h2>
+  <div class="projects-grid">
+
+    <!-- PROJECT 1: DigitalLink Social Media -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#0f0f1a"/>
+          <!-- phone frame left -->
+          <rect x="18" y="14" width="90" height="172" rx="12" fill="#1e1e30" stroke="#3a3a5c" stroke-width="1.2"/>
+          <rect x="24" y="28" width="78" height="78" rx="6" fill="#2a1f3d"/>
+          <!-- gradient post bg -->
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4537E"/>
+              <stop offset="100%" stop-color="#7c3aed"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="28" width="78" height="78" rx="6" fill="url(#g1)" opacity="0.85"/>
+          <text x="63" y="62" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Digital</text>
+          <text x="63" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Link</text>
+          <text x="63" y="96" text-anchor="middle" font-family="Arial" font-size="7" fill="rgba(255,255,255,0.7)">@digitallink.pk</text>
+          <!-- post 2 -->
+          <rect x="24" y="114" width="36" height="36" rx="4" fill="#1a2a1a"/>
+          <rect x="24" y="114" width="36" height="36" rx="4" fill="#2d6a4f" opacity="0.7"/>
+          <text x="42" y="136" text-anchor="middle" font-size="14" fill="white">✓</text>
+          <!-- post 3 -->
+          <rect x="66" y="114" width="36" height="36" rx="4" fill="#2a1a1a"/>
+          <rect x="66" y="114" width="36" height="36" rx="4" fill="#c1440e" opacity="0.6"/>
+          <text x="84" y="136" text-anchor="middle" font-size="12" fill="white">🔥</text>
+          <!-- stats bar -->
+          <rect x="24" y="158" width="78" height="16" rx="4" fill="#2a2a40"/>
+          <rect x="28" y="162" width="18" height="8" rx="2" fill="#D4537E" opacity="0.8"/>
+          <rect x="50" y="162" width="12" height="8" rx="2" fill="#7c3aed" opacity="0.6"/>
+          <rect x="66" y="162" width="30" height="8" rx="2" fill="#2a7af4" opacity="0.5"/>
+
+          <!-- center phone -->
+          <rect x="122" y="8" width="100" height="184" rx="14" fill="#1e1e30" stroke="#D4537E" stroke-width="1.5"/>
+          <rect x="155" y="12" width="34" height="5" rx="3" fill="#3a3a5c"/>
+          <!-- story circles -->
+          <circle cx="140" cy="40" r="13" fill="none" stroke="url(#g1)" stroke-width="2"/>
+          <circle cx="140" cy="40" r="9" fill="#2a2a40"/>
+          <text x="140" y="44" text-anchor="middle" font-size="10" fill="#D4537E">A</text>
+          <circle cx="168" cy="40" r="13" fill="none" stroke="#7c3aed" stroke-width="2"/>
+          <circle cx="168" cy="40" r="9" fill="#2a2a40"/>
+          <text x="168" y="44" text-anchor="middle" font-size="9" fill="#a78bfa">D</text>
+          <circle cx="196" cy="40" r="13" fill="none" stroke="#2a7af4" stroke-width="2"/>
+          <circle cx="196" cy="40" r="9" fill="#2a2a40"/>
+          <text x="196" y="44" text-anchor="middle" font-size="9" fill="#60a5fa">L</text>
+          <!-- feed post big -->
+          <rect x="128" y="62" width="88" height="88" rx="6" fill="url(#g1)" opacity="0.9"/>
+          <text x="172" y="100" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="white">Digital</text>
+          <text x="172" y="116" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="white">Link</text>
+          <text x="172" y="128" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Connecting You Digitally</text>
+          <!-- likes row -->
+          <text x="132" y="164" font-size="8" fill="#D4537E">♥ 248</text>
+          <text x="162" y="164" font-size="8" fill="#7a7a9a">💬 34</text>
+          <text x="192" y="164" font-size="8" fill="#7a7a9a">↗ 19</text>
+          <!-- caption lines -->
+          <rect x="128" y="170" width="60" height="4" rx="2" fill="#3a3a5c"/>
+          <rect x="128" y="178" width="40" height="4" rx="2" fill="#2a2a40"/>
+
+          <!-- right panel — analytics -->
+          <rect x="236" y="14" width="130" height="172" rx="10" fill="#13131f" stroke="#2a2a40" stroke-width="1"/>
+          <text x="301" y="34" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#D4537E" letter-spacing="1">ANALYTICS</text>
+          <!-- bar chart -->
+          <rect x="248" y="130" width="12" height="36" rx="2" fill="#D4537E" opacity="0.9"/>
+          <rect x="264" y="110" width="12" height="56" rx="2" fill="#D4537E" opacity="0.7"/>
+          <rect x="280" y="120" width="12" height="46" rx="2" fill="#7c3aed" opacity="0.8"/>
+          <rect x="296" y="90" width="12" height="76" rx="2" fill="#D4537E"/>
+          <rect x="312" y="100" width="12" height="66" rx="2" fill="#2a7af4" opacity="0.7"/>
+          <rect x="328" y="80" width="12" height="86" rx="2" fill="#D4537E" opacity="0.85"/>
+          <line x1="246" y1="170" x2="346" y2="170" stroke="#2a2a40" stroke-width="1"/>
+          <!-- metric pills -->
+          <rect x="246" y="44" width="50" height="28" rx="6" fill="#1e1e2e"/>
+          <text x="271" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="white">+42%</text>
+          <text x="271" y="67" text-anchor="middle" font-size="7" fill="#9a8aaa">Reach</text>
+          <rect x="302" y="44" width="56" height="28" rx="6" fill="#1e1e2e"/>
+          <text x="330" y="56" text-anchor="middle" font-size="11" font-weight="bold" fill="#D4537E">↑ 1.2k</text>
+          <text x="330" y="67" text-anchor="middle" font-size="7" fill="#9a8aaa">Followers</text>
+        </svg>
+      </div>
+      <div class="project-type">Social Media Management</div>
+      <div class="project-title">DigitalLink — Brand Growth Strategy</div>
+      <p class="project-desc">Managed end-to-end social media presence for DigitalLink. Developed a consistent content strategy, designed branded visuals, and created engaging captions. Grew organic reach through reels and targeted posting schedules.</p>
+      <div class="project-tags">
+        <span class="project-tag">Instagram</span>
+        <span class="project-tag">Facebook</span>
+        <span class="project-tag">Canva</span>
+        <span class="project-tag">Content Strategy</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Umeed Homeo -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#0d1f15"/>
+          <defs>
+            <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a5c36"/>
+              <stop offset="100%" stop-color="#2d9e60"/>
+            </linearGradient>
+            <linearGradient id="g2b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#2d9e60"/>
+              <stop offset="100%" stop-color="#96e6b3"/>
+            </linearGradient>
+          </defs>
+          <!-- instagram post mockup left -->
+          <rect x="16" y="12" width="108" height="108" rx="10" fill="url(#g2)"/>
+          <circle cx="70" cy="44" r="16" fill="rgba(255,255,255,0.12)"/>
+          <text x="70" y="49" text-anchor="middle" font-size="18" fill="white">🌿</text>
+          <text x="70" y="74" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="bold" fill="white">Umeed Homeo</text>
+          <text x="70" y="86" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.8)">Natural Healing, Trusted Care</text>
+          <rect x="24" y="94" width="92" height="16" rx="4" fill="rgba(255,255,255,0.15)"/>
+          <text x="70" y="106" text-anchor="middle" font-size="7" fill="white">📞 Book Appointment Today</text>
+          <!-- likes under post -->
+          <text x="20" y="132" font-size="8" fill="#2d9e60">♥ 312  💬 28  ↗ 45</text>
+          <rect x="16" y="138" width="80" height="4" rx="2" fill="#1a3a25"/>
+          <rect x="16" y="146" width="55" height="4" rx="2" fill="#1a3a25"/>
+
+          <!-- post 2 — tip card -->
+          <rect x="136" y="12" width="108" height="108" rx="10" fill="#142b1e"/>
+          <rect x="140" y="16" width="100" height="100" rx="8" fill="url(#g2b)" opacity="0.15"/>
+          <rect x="148" y="24" width="84" height="28" rx="5" fill="rgba(45,158,96,0.3)" stroke="#2d9e60" stroke-width="0.8"/>
+          <text x="190" y="36" text-anchor="middle" font-size="8" font-weight="bold" fill="#96e6b3">Health Tip of the Day</text>
+          <text x="190" y="47" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.7)">Homeopathy &amp; You</text>
+          <text x="190" y="68" text-anchor="middle" font-size="20" fill="#2d9e60">⚕</text>
+          <text x="190" y="86" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.85)">"Healing from within"</text>
+          <text x="190" y="98" text-anchor="middle" font-size="7" fill="#2d9e60">— Umeed Homeo</text>
+          <text x="140" y="132" font-size="8" fill="#2d9e60">♥ 198  💬 14</text>
+          <rect x="136" y="138" width="70" height="4" rx="2" fill="#1a3a25"/>
+
+          <!-- story / reel strip right -->
+          <rect x="256" y="12" width="108" height="176" rx="12" fill="#0a1a10" stroke="#2d9e60" stroke-width="1"/>
+          <rect x="260" y="16" width="100" height="140" rx="8" fill="url(#g2)" opacity="0.7"/>
+          <text x="310" y="55" text-anchor="middle" font-size="22" fill="white">🌿</text>
+          <text x="310" y="78" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Umeed</text>
+          <text x="310" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Homeo</text>
+          <rect x="270" y="102" width="80" height="14" rx="4" fill="rgba(0,0,0,0.35)"/>
+          <text x="310" y="113" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.9)">Clinic · Islamabad, PK</text>
+          <rect x="268" y="122" width="84" height="26" rx="5" fill="rgba(45,158,96,0.85)"/>
+          <text x="310" y="134" text-anchor="middle" font-size="8" font-weight="bold" fill="white">📅 Book Now</text>
+          <text x="310" y="144" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Free Consultation</text>
+          <!-- engagement bar -->
+          <rect x="260" y="162" width="100" height="18" rx="5" fill="#0d1f15"/>
+          <text x="270" y="174" font-size="7.5" fill="#2d9e60">♥ 489</text>
+          <text x="300" y="174" font-size="7.5" fill="#6abf85">👁 2.3k</text>
+          <text x="332" y="174" font-size="7.5" fill="#4a9e65">↗ 67</text>
+        </svg>
+      </div>
+      <div class="project-type">Social Media + Graphic Design</div>
+      <div class="project-title">Umeed Homeo — Health Brand Presence</div>
+      <p class="project-desc">Built and maintained the social media identity for a homeopathic clinic. Created educational reels, trust-building posts, and consistent visual branding. Improved engagement and follower consistency over 6 months.</p>
+      <div class="project-tags">
+        <span class="project-tag">Reels</span>
+        <span class="project-tag">Photoshop</span>
+        <span class="project-tag">Health Content</span>
+        <span class="project-tag">Audience Growth</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: UI/UX Figma wireframes -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#1a1a2e"/>
+          <defs>
+            <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4537E"/>
+              <stop offset="100%" stop-color="#f472b6"/>
+            </linearGradient>
+          </defs>
+          <!-- Figma-style frame label -->
+          <text x="16" y="24" font-family="monospace" font-size="9" fill="#6b6b8a">Frame / Mobile App · Figma</text>
+
+          <!-- Phone 1 — Home screen -->
+          <rect x="16" y="32" width="72" height="130" rx="10" fill="#252540" stroke="#3a3a60" stroke-width="1"/>
+          <rect x="20" y="38" width="64" height="9" rx="3" fill="#3a3a60"/>
+          <text x="52" y="46" text-anchor="middle" font-size="6" fill="#9a9aba">Home</text>
+          <!-- search bar -->
+          <rect x="22" y="52" width="60" height="9" rx="4" fill="#1e1e38" stroke="#3a3a5c" stroke-width="0.6"/>
+          <text x="35" y="59" font-size="5.5" fill="#5a5a7a">🔍 Search...</text>
+          <!-- product grid -->
+          <rect x="22" y="66" width="28" height="32" rx="4" fill="#D4537E" opacity="0.7"/>
+          <text x="36" y="86" text-anchor="middle" font-size="8" fill="white">👗</text>
+          <rect x="54" y="66" width="28" height="32" rx="4" fill="#7c3aed" opacity="0.6"/>
+          <text x="68" y="86" text-anchor="middle" font-size="8" fill="white">👠</text>
+          <rect x="22" y="102" width="28" height="32" rx="4" fill="#2a7af4" opacity="0.5"/>
+          <text x="36" y="122" text-anchor="middle" font-size="8" fill="white">👜</text>
+          <rect x="54" y="102" width="28" height="32" rx="4" fill="#059669" opacity="0.5"/>
+          <text x="68" y="122" text-anchor="middle" font-size="8" fill="white">✨</text>
+          <!-- nav bar -->
+          <rect x="16" y="148" width="72" height="14" rx="0" fill="#1e1e38"/>
+          <text x="30" y="158" text-anchor="middle" font-size="9" fill="#D4537E">⌂</text>
+          <text x="52" y="158" text-anchor="middle" font-size="9" fill="#5a5a7a">♡</text>
+          <text x="74" y="158" text-anchor="middle" font-size="9" fill="#5a5a7a">◻</text>
+
+          <!-- Phone 2 — Product detail -->
+          <rect x="100" y="32" width="72" height="130" rx="10" fill="#252540" stroke="#D4537E" stroke-width="1.5"/>
+          <rect x="104" y="38" width="64" height="50" rx="4" fill="url(#g3)" opacity="0.8"/>
+          <text x="136" y="68" text-anchor="middle" font-size="18" fill="white">👗</text>
+          <text x="108" y="100" font-size="8" font-weight="bold" fill="white">Floral Dress</text>
+          <text x="108" y="110" font-size="7" fill="#9a8aaa">PKR 3,200</text>
+          <rect x="108" y="116" width="20" height="8" rx="3" fill="#D4537E"/>
+          <text x="118" y="123" text-anchor="middle" font-size="5.5" fill="white">S</text>
+          <rect x="132" y="116" width="20" height="8" rx="3" fill="#3a3a60"/>
+          <text x="142" y="123" text-anchor="middle" font-size="5.5" fill="white">M</text>
+          <rect x="156" y="116" width="14" height="8" rx="3" fill="#3a3a60"/>
+          <text x="163" y="123" text-anchor="middle" font-size="5.5" fill="white">L</text>
+          <rect x="104" y="130" width="64" height="14" rx="4" fill="url(#g3)"/>
+          <text x="136" y="140" text-anchor="middle" font-size="7.5" font-weight="bold" fill="white">Add to Cart</text>
+          <rect x="104" y="148" width="64" height="14" rx="0" fill="#1e1e38"/>
+          <text x="117" y="158" text-anchor="middle" font-size="9" fill="#5a5a7a">←</text>
+          <text x="136" y="158" text-anchor="middle" font-size="9" fill="#5a5a7a">◉</text>
+          <text x="155" y="158" text-anchor="middle" font-size="9" fill="#5a5a7a">☰</text>
+
+          <!-- Phone 3 — Cart -->
+          <rect x="184" y="32" width="72" height="130" rx="10" fill="#252540" stroke="#3a3a60" stroke-width="1"/>
+          <text x="220" y="46" text-anchor="middle" font-size="7" font-weight="bold" fill="white">My Cart (2)</text>
+          <rect x="188" y="52" width="64" height="26" rx="4" fill="#1e1e38"/>
+          <rect x="192" y="56" width="18" height="18" rx="3" fill="#D4537E" opacity="0.7"/>
+          <text x="201" y="68" text-anchor="middle" font-size="10" fill="white">👗</text>
+          <text x="216" y="63" font-size="6.5" fill="white">Floral Dress</text>
+          <text x="216" y="72" font-size="6" fill="#D4537E">PKR 3,200</text>
+          <rect x="188" y="82" width="64" height="26" rx="4" fill="#1e1e38"/>
+          <rect x="192" y="86" width="18" height="18" rx="3" fill="#7c3aed" opacity="0.6"/>
+          <text x="201" y="98" text-anchor="middle" font-size="10" fill="white">👠</text>
+          <text x="216" y="93" font-size="6.5" fill="white">Heels</text>
+          <text x="216" y="102" font-size="6" fill="#D4537E">PKR 2,800</text>
+          <rect x="188" y="116" width="64" height="1" fill="#3a3a60"/>
+          <text x="192" y="128" font-size="7" fill="#9a9aba">Total</text>
+          <text x="248" y="128" text-anchor="end" font-size="7" font-weight="bold" fill="white">PKR 6,000</text>
+          <rect x="188" y="132" width="64" height="14" rx="4" fill="url(#g3)"/>
+          <text x="220" y="142" text-anchor="middle" font-size="7.5" font-weight="bold" fill="white">Checkout →</text>
+          <rect x="188" y="148" width="64" height="14" rx="0" fill="#1e1e38"/>
+
+          <!-- flow arrows -->
+          <text x="90" y="100" text-anchor="middle" font-size="10" fill="#D4537E">→</text>
+          <text x="174" y="100" text-anchor="middle" font-size="10" fill="#D4537E">→</text>
+
+          <!-- right: user flow diagram -->
+          <rect x="268" y="32" width="96" height="130" rx="8" fill="#13131f" stroke="#2a2a40" stroke-width="0.8"/>
+          <text x="316" y="46" text-anchor="middle" font-size="7.5" fill="#D4537E" font-weight="bold">USER FLOW</text>
+          <rect x="278" y="52" width="76" height="14" rx="4" fill="#2a2a40"/>
+          <text x="316" y="62" text-anchor="middle" font-size="6.5" fill="white">🏠 Home Screen</text>
+          <line x1="316" y1="66" x2="316" y2="74" stroke="#D4537E" stroke-width="1" stroke-dasharray="2"/>
+          <rect x="278" y="74" width="76" height="14" rx="4" fill="#2a2a40"/>
+          <text x="316" y="84" text-anchor="middle" font-size="6.5" fill="white">🔍 Browse / Search</text>
+          <line x1="316" y1="88" x2="316" y2="96" stroke="#D4537E" stroke-width="1" stroke-dasharray="2"/>
+          <rect x="278" y="96" width="76" height="14" rx="4" fill="#2a2a40"/>
+          <text x="316" y="106" text-anchor="middle" font-size="6.5" fill="white">👗 Product Detail</text>
+          <line x1="316" y1="110" x2="316" y2="118" stroke="#D4537E" stroke-width="1" stroke-dasharray="2"/>
+          <rect x="278" y="118" width="76" height="14" rx="4" fill="#2a2a40"/>
+          <text x="316" y="128" text-anchor="middle" font-size="6.5" fill="white">🛒 Cart</text>
+          <line x1="316" y1="132" x2="316" y2="140" stroke="#D4537E" stroke-width="1" stroke-dasharray="2"/>
+          <rect x="278" y="140" width="76" height="14" rx="4" fill="url(#g3)" opacity="0.8"/>
+          <text x="316" y="150" text-anchor="middle" font-size="6.5" fill="white">✅ Checkout</text>
+          <!-- label -->
+          <text x="190" y="178" text-anchor="middle" font-size="8" fill="#5a5a7a">Figma · Mobile App Wireframes · Fashion E-Commerce</text>
+        </svg>
+      </div>
+      <div class="project-type">UI/UX Design</div>
+      <div class="project-title">E-Commerce App Wireframes (Figma)</div>
+      <p class="project-desc">Designed low-to-mid fidelity wireframes for a fashion e-commerce mobile app. Focused on user flow, navigation hierarchy, and a clean product browsing experience using Figma components.</p>
+      <div class="project-tags">
+        <span class="project-tag">Figma</span>
+        <span class="project-tag">Wireframing</span>
+        <span class="project-tag">Mobile UI</span>
+        <span class="project-tag">User Flow</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: Analytics Dashboard -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#0f1117"/>
+          <defs>
+            <linearGradient id="g4" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#D4537E" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#D4537E" stop-opacity="0.6"/>
+            </linearGradient>
+            <linearGradient id="g4b" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.5"/>
+            </linearGradient>
+          </defs>
+          <!-- header -->
+          <rect x="12" y="10" width="356" height="28" rx="6" fill="#1a1a2a"/>
+          <text x="24" y="28" font-size="9" font-weight="bold" fill="white" font-family="Arial">📊 Social Media Performance Dashboard</text>
+          <rect x="298" y="16" width="62" height="16" rx="4" fill="#D4537E" opacity="0.2"/>
+          <text x="329" y="27" text-anchor="middle" font-size="7.5" fill="#D4537E">April 2025</text>
+          <!-- KPI cards row -->
+          <rect x="12" y="44" width="78" height="38" rx="6" fill="#1a1a2a"/>
+          <text x="51" y="56" text-anchor="middle" font-size="7" fill="#9a9aba">Total Reach</text>
+          <text x="51" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">24.6K</text>
+          <text x="78" y="56" font-size="7" fill="#2d9e60">↑12%</text>
+          <rect x="96" y="44" width="78" height="38" rx="6" fill="#1a1a2a"/>
+          <text x="135" y="56" text-anchor="middle" font-size="7" fill="#9a9aba">Engagement</text>
+          <text x="135" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#D4537E" font-family="Arial">4.8%</text>
+          <rect x="180" y="44" width="78" height="38" rx="6" fill="#1a1a2a"/>
+          <text x="219" y="56" text-anchor="middle" font-size="7" fill="#9a9aba">New Followers</text>
+          <text x="219" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">+1,247</text>
+          <rect x="264" y="44" width="104" height="38" rx="6" fill="#1a1a2a"/>
+          <text x="316" y="56" text-anchor="middle" font-size="7" fill="#9a9aba">Best Post Reach</text>
+          <text x="316" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#a78bfa" font-family="Arial">8,920</text>
+          <!-- line chart area -->
+          <rect x="12" y="88" width="220" height="84" rx="6" fill="#1a1a2a"/>
+          <text x="22" y="100" font-size="7.5" fill="#9a9aba">Follower Growth — Last 6 Months</text>
+          <!-- area fill -->
+          <polygon points="28,158 28,148 62,138 96,130 130,118 164,108 198,96 222,96 222,158" fill="url(#g4)"/>
+          <!-- line -->
+          <polyline points="28,148 62,138 96,130 130,118 164,108 198,96" fill="none" stroke="#D4537E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- dots -->
+          <circle cx="28" cy="148" r="3" fill="#D4537E"/>
+          <circle cx="62" cy="138" r="3" fill="#D4537E"/>
+          <circle cx="96" cy="130" r="3" fill="#D4537E"/>
+          <circle cx="130" cy="118" r="3" fill="#D4537E"/>
+          <circle cx="164" cy="108" r="3.5" fill="#D4537E" stroke="#ff8bae" stroke-width="1.5"/>
+          <circle cx="198" cy="96" r="3" fill="#D4537E"/>
+          <!-- x-axis labels -->
+          <text x="28" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Nov</text>
+          <text x="62" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Dec</text>
+          <text x="96" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Jan</text>
+          <text x="130" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Feb</text>
+          <text x="164" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Mar</text>
+          <text x="198" y="170" text-anchor="middle" font-size="6" fill="#5a5a7a">Apr</text>
+          <!-- bar chart right -->
+          <rect x="238" y="88" width="130" height="84" rx="6" fill="#1a1a2a"/>
+          <text x="248" y="100" font-size="7.5" fill="#9a9aba">Content Type Performance</text>
+          <!-- bars -->
+          <rect x="252" y="140" width="18" height="28" rx="2" fill="#D4537E" opacity="0.9"/>
+          <text x="261" y="155" text-anchor="middle" font-size="5.5" fill="white">Reels</text>
+          <rect x="276" y="122" width="18" height="46" rx="2" fill="#D4537E"/>
+          <text x="285" y="142" text-anchor="middle" font-size="5.5" fill="white">Posts</text>
+          <rect x="300" y="132" width="18" height="36" rx="2" fill="#7c3aed" opacity="0.8"/>
+          <text x="309" y="148" text-anchor="middle" font-size="5.5" fill="white">Stories</text>
+          <rect x="324" y="148" width="18" height="20" rx="2" fill="#2a7af4" opacity="0.7"/>
+          <text x="333" y="160" text-anchor="middle" font-size="5.5" fill="white">Ads</text>
+          <line x1="248" y1="168" x2="356" y2="168" stroke="#2a2a40" stroke-width="0.8"/>
+          <!-- legend -->
+          <circle cx="252" cy="178" r="3" fill="#D4537E"/>
+          <text x="258" y="181" font-size="6" fill="#9a9aba">Instagram</text>
+          <circle cx="300" cy="178" r="3" fill="#7c3aed"/>
+          <text x="306" y="181" font-size="6" fill="#9a9aba">Facebook</text>
+        </svg>
+      </div>
+      <div class="project-type">Data Analytics</div>
+      <div class="project-title">Social Media Performance Dashboard</div>
+      <p class="project-desc">Created an Excel-based dashboard to track key social media KPIs — reach, engagement rate, follower growth, and best-performing content types — helping clients make data-backed decisions.</p>
+      <div class="project-tags">
+        <span class="project-tag">Excel</span>
+        <span class="project-tag">Data Viz</span>
+        <span class="project-tag">KPI Tracking</span>
+        <span class="project-tag">Reporting</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 5: Women in Tech -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#0d0d1f"/>
+          <defs>
+            <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#D4537E"/>
+            </linearGradient>
+          </defs>
+          <!-- event poster left -->
+          <rect x="14" y="10" width="130" height="180" rx="10" fill="#13132a"/>
+          <rect x="14" y="10" width="130" height="80" rx="10" fill="url(#g5)" opacity="0.9"/>
+          <rect x="14" y="70" width="130" height="20" rx="0" fill="url(#g5)" opacity="0.9"/>
+          <!-- stars decoration -->
+          <text x="30" y="32" font-size="8" fill="rgba(255,255,255,0.5)">✦</text>
+          <text x="120" y="28" font-size="6" fill="rgba(255,255,255,0.4)">✦</text>
+          <text x="110" y="58" font-size="5" fill="rgba(255,255,255,0.3)">✦</text>
+          <!-- title -->
+          <text x="79" y="40" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Women</text>
+          <text x="79" y="54" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">in Tech</text>
+          <text x="79" y="67" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.85)">GDSC SUIT Peshawar</text>
+          <!-- body -->
+          <text x="79" y="102" text-anchor="middle" font-size="9" fill="white">Workshop &amp; Networking</text>
+          <text x="79" y="115" text-anchor="middle" font-size="7.5" fill="#9a8aaa">Open to all female CS students</text>
+          <!-- icons row -->
+          <text x="34" y="138" font-size="11" fill="#D4537E">👩‍💻</text>
+          <text x="60" y="138" font-size="11" fill="#a78bfa">🎤</text>
+          <text x="86" y="138" font-size="11" fill="#60a5fa">🌐</text>
+          <text x="112" y="138" font-size="11" fill="#34d399">🤝</text>
+          <rect x="24" y="148" width="100" height="1" fill="#2a2a4a"/>
+          <text x="79" y="162" text-anchor="middle" font-size="7" fill="#7a7aaa">📅 March 2024 · SUIT Campus</text>
+          <!-- QR-like box -->
+          <rect x="44" y="168" width="20" height="20" rx="2" fill="#2a2a4a"/>
+          <rect x="47" y="171" width="14" height="14" rx="1" fill="#3a3a5a"/>
+          <text x="54" y="182" text-anchor="middle" font-size="6" fill="#7c3aed">QR</text>
+          <text x="84" y="178" text-anchor="middle" font-size="7" fill="#9a8aaa">Register →</text>
+
+          <!-- right side — social post + stats -->
+          <rect x="156" y="10" width="210" height="86" rx="8" fill="#13132a" stroke="#2a2a3a" stroke-width="0.8"/>
+          <!-- post header -->
+          <circle cx="172" cy="28" r="10" fill="url(#g5)"/>
+          <text x="172" y="32" text-anchor="middle" font-size="9" fill="white">G</text>
+          <text x="186" y="24" font-size="8" font-weight="bold" fill="white">GDSC SUIT Peshawar</text>
+          <text x="186" y="34" font-size="6.5" fill="#6a6a8a">@gdsc.suit.peshawar · 2d ago</text>
+          <!-- post text -->
+          <text x="164" y="50" font-size="7.5" fill="rgba(255,255,255,0.9)">🚀 Calling all women in tech!</text>
+          <text x="164" y="62" font-size="7" fill="#9a8aaa">Join our Women-in-Tech workshop</text>
+          <text x="164" y="73" font-size="7" fill="#9a8aaa">this March. Seats are limited 🌟</text>
+          <text x="164" y="86" font-size="7" fill="#D4537E">#WomenInTech #GDSC #Tech</text>
+
+          <!-- engagement row -->
+          <rect x="156" y="100" width="210" height="22" rx="6" fill="#0d0d1f"/>
+          <text x="166" y="114" font-size="7.5" fill="#D4537E">♥ 412</text>
+          <text x="200" y="114" font-size="7.5" fill="#6a6a8a">↗ 98 shares</text>
+          <text x="248" y="114" font-size="7.5" fill="#6a6a8a">💬 57 comments</text>
+          <text x="330" y="114" font-size="7.5" fill="#60a5fa">👁 3.2k</text>
+
+          <!-- members grid -->
+          <rect x="156" y="128" width="210" height="62" rx="8" fill="#13132a" stroke="#2a2a3a" stroke-width="0.8"/>
+          <text x="166" y="142" font-size="7.5" fill="#a78bfa" font-weight="bold">Members Onboarded</text>
+          <text x="342" y="142" text-anchor="end" font-size="7.5" fill="#34d399">30+ ✓</text>
+          <!-- avatar circles -->
+          <circle cx="168" cy="162" r="10" fill="#D4537E" opacity="0.8"/>
+          <text x="168" y="166" text-anchor="middle" font-size="8" fill="white">F</text>
+          <circle cx="184" cy="162" r="10" fill="#7c3aed" opacity="0.8"/>
+          <text x="184" y="166" text-anchor="middle" font-size="8" fill="white">A</text>
+          <circle cx="200" cy="162" r="10" fill="#2a7af4" opacity="0.8"/>
+          <text x="200" y="166" text-anchor="middle" font-size="8" fill="white">S</text>
+          <circle cx="216" cy="162" r="10" fill="#059669" opacity="0.8"/>
+          <text x="216" y="166" text-anchor="middle" font-size="8" fill="white">Z</text>
+          <circle cx="232" cy="162" r="10" fill="#ea580c" opacity="0.8"/>
+          <text x="232" y="166" text-anchor="middle" font-size="8" fill="white">N</text>
+          <circle cx="248" cy="162" r="10" fill="#0891b2" opacity="0.8"/>
+          <text x="248" y="166" text-anchor="middle" font-size="8" fill="white">R</text>
+          <rect x="258" y="152" width="28" height="20" rx="10" fill="#2a2a3a"/>
+          <text x="272" y="165" text-anchor="middle" font-size="7.5" fill="#9a9aba">+24</text>
+          <!-- role tag -->
+          <rect x="296" y="152" width="62" height="20" rx="6" fill="url(#g5)" opacity="0.3"/>
+          <text x="327" y="165" text-anchor="middle" font-size="7" fill="#D4537E">Women-Tech Lead</text>
+        </svg>
+      </div>
+      <div class="project-type">Community + Social</div>
+      <div class="project-title">Women in Tech Initiative — GDSC SUIT</div>
+      <p class="project-desc">Led a campus-level initiative to increase female participation in tech. Managed communications, designed event creatives, and onboarded 30+ women members to the Google Developer Student Club.</p>
+      <div class="project-tags">
+        <span class="project-tag">Leadership</span>
+        <span class="project-tag">Community Building</span>
+        <span class="project-tag">Event Design</span>
+        <span class="project-tag">Women in Tech</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 6: Brand Visual Kits -->
+    <div class="project-card">
+      <div class="project-preview">
+        <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:12px;display:block;">
+          <rect width="380" height="200" fill="#111118"/>
+          <defs>
+            <linearGradient id="g6a" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4537E"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="g6b" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#2a7af4"/>
+            </linearGradient>
+            <linearGradient id="g6c" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#059669"/>
+              <stop offset="100%" stop-color="#0891b2"/>
+            </linearGradient>
+          </defs>
+          <!-- Brand kit label -->
+          <text x="16" y="20" font-size="8.5" fill="#5a5a7a" font-family="monospace">Brand Visual Kit · Multiple Clients</text>
+
+          <!-- Client 1 card -->
+          <rect x="14" y="28" width="108" height="76" rx="8" fill="#1a1a28"/>
+          <rect x="14" y="28" width="108" height="36" rx="8" fill="url(#g6a)"/>
+          <rect x="14" y="52" width="108" height="12" rx="0" fill="url(#g6a)" opacity="0.8"/>
+          <text x="68" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">Bloom Café</text>
+          <text x="22" y="76" font-size="7" fill="#9a9aba">Logo · Posts · Stories</text>
+          <text x="22" y="86" font-size="6.5" fill="#5a5a7a">Palette · Typography</text>
+          <!-- color swatches -->
+          <circle cx="90" cy="78" r="6" fill="#D4537E"/>
+          <circle cx="102" cy="78" r="6" fill="#f97316"/>
+          <circle cx="114" cy="78" r="6" fill="#fbbf24"/>
+
+          <!-- Client 2 card -->
+          <rect x="130" y="28" width="108" height="76" rx="8" fill="#1a1a28"/>
+          <rect x="130" y="28" width="108" height="36" rx="8" fill="url(#g6b)"/>
+          <rect x="130" y="52" width="108" height="12" rx="0" fill="url(#g6b)" opacity="0.8"/>
+          <text x="184" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">TechUp PK</text>
+          <text x="138" y="76" font-size="7" fill="#9a9aba">Banners · Highlights</text>
+          <text x="138" y="86" font-size="6.5" fill="#5a5a7a">Social Templates</text>
+          <circle cx="206" cy="78" r="6" fill="#7c3aed"/>
+          <circle cx="218" cy="78" r="6" fill="#2a7af4"/>
+          <circle cx="230" cy="78" r="6" fill="#60a5fa"/>
+
+          <!-- Client 3 card -->
+          <rect x="246" y="28" width="120" height="76" rx="8" fill="#1a1a28"/>
+          <rect x="246" y="28" width="120" height="36" rx="8" fill="url(#g6c)"/>
+          <rect x="246" y="52" width="120" height="12" rx="0" fill="url(#g6c)" opacity="0.8"/>
+          <text x="306" y="50" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="bold" fill="white">GreenRoot</text>
+          <text x="254" y="76" font-size="7" fill="#9a9aba">Eco Brand Identity</text>
+          <text x="254" y="86" font-size="6.5" fill="#5a5a7a">Posts · Story Covers</text>
+          <circle cx="328" cy="78" r="6" fill="#059669"/>
+          <circle cx="340" cy="78" r="6" fill="#0891b2"/>
+          <circle cx="352" cy="78" r="6" fill="#34d399"/>
+
+          <!-- divider -->
+          <line x1="14" y1="112" x2="366" y2="112" stroke="#2a2a3a" stroke-width="0.8"/>
+
+          <!-- social post templates row -->
+          <text x="16" y="126" font-size="7.5" fill="#7a7a9a">Post Templates</text>
+          <text x="150" y="126" font-size="7.5" fill="#7a7a9a">Story Templates</text>
+          <text x="270" y="126" font-size="7.5" fill="#7a7a9a">Highlight Covers</text>
+
+          <!-- post templates -->
+          <rect x="14" y="132" width="40" height="40" rx="5" fill="url(#g6a)" opacity="0.8"/>
+          <text x="34" y="158" text-anchor="middle" font-size="9" fill="white">☕</text>
+          <rect x="58" y="132" width="40" height="40" rx="5" fill="url(#g6b)" opacity="0.8"/>
+          <text x="78" y="158" text-anchor="middle" font-size="9" fill="white">💻</text>
+          <rect x="102" y="132" width="40" height="40" rx="5" fill="url(#g6c)" opacity="0.8"/>
+          <text x="122" y="158" text-anchor="middle" font-size="9" fill="white">🌱</text>
+
+          <!-- story templates (portrait) -->
+          <rect x="150" y="128" width="24" height="44" rx="4" fill="url(#g6a)" opacity="0.75"/>
+          <text x="162" y="155" text-anchor="middle" font-size="9" fill="white">☕</text>
+          <rect x="178" y="128" width="24" height="44" rx="4" fill="url(#g6b)" opacity="0.75"/>
+          <text x="190" y="155" text-anchor="middle" font-size="9" fill="white">🚀</text>
+          <rect x="206" y="128" width="24" height="44" rx="4" fill="url(#g6c)" opacity="0.75"/>
+          <text x="218" y="155" text-anchor="middle" font-size="9" fill="white">🌿</text>
+          <rect x="234" y="128" width="24" height="44" rx="4" fill="#2a2a3a"/>
+          <text x="246" y="155" text-anchor="middle" font-size="9" fill="#5a5a7a">+</text>
+
+          <!-- highlight circles -->
+          <circle cx="280" cy="152" r="18" fill="none" stroke="url(#g6a)" stroke-width="2"/>
+          <circle cx="280" cy="152" r="14" fill="#1a1a28"/>
+          <text x="280" y="157" text-anchor="middle" font-size="11" fill="#D4537E">☕</text>
+          <circle cx="316" cy="152" r="18" fill="none" stroke="url(#g6b)" stroke-width="2"/>
+          <circle cx="316" cy="152" r="14" fill="#1a1a28"/>
+          <text x="316" y="157" text-anchor="middle" font-size="11" fill="#7c3aed">💼</text>
+          <circle cx="352" cy="152" r="18" fill="none" stroke="url(#g6c)" stroke-width="2"/>
+          <circle cx="352" cy="152" r="14" fill="#1a1a28"/>
+          <text x="352" y="157" text-anchor="middle" font-size="11" fill="#059669">🌱</text>
+
+          <!-- tool labels -->
+          <text x="14" y="192" font-size="7" fill="#3a3a5a">🎨 Canva</text>
+          <text x="60" y="192" font-size="7" fill="#3a3a5a">Photoshop</text>
+          <text x="118" y="192" font-size="7" fill="#3a3a5a">Brand Identity</text>
+          <text x="200" y="192" font-size="7" fill="#3a3a5a">Social Media Creatives</text>
+          <text x="318" y="192" font-size="7" fill="#3a3a5a">3 Clients</text>
+        </svg>
+      </div>
+      <div class="project-type">Graphic Design</div>
+      <div class="project-title">Brand Visual Kits — Multiple Clients</div>
+      <p class="project-desc">Designed full social media visual kits for multiple small businesses including post templates, story designs, highlight covers, and promotional banners using Canva and Photoshop.</p>
+      <div class="project-tags">
+        <span class="project-tag">Canva</span>
+        <span class="project-tag">Photoshop</span>
+        <span class="project-tag">Brand Identity</span>
+        <span class="project-tag">Social Graphics</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-eyebrow">Get In Touch</p>
+  <h2 class="section-title">Let's work together</h2>
+  <p class="contact-sub">Whether you need a social media manager, a designer, or someone who can do both — I'd love to hear from you.</p>
+  <div class="contact-links">
+    <a href="mailto:alinahamid48@gmail.com" class="contact-link">
+      <span class="contact-icon">✉</span> alinahamid48@gmail.com
+    </a>
+    <a href="tel:+923201947518" class="contact-link">
+      <span class="contact-icon">📞</span> 0320-1947518
+    </a>
+    <a href="https://www.linkedin.com/in/alinahamid-social-media-manager/" target="_blank" class="contact-link">
+      <span class="contact-icon">🔗</span> LinkedIn Profile
+    </a>
+    <a href="#" class="contact-link">
+      <span class="contact-icon">📍</span> Islamabad, Pakistan
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built with care · <span>Alina Hamid</span> © 2025</p>
+</footer>
+
+</body>
+</html>
